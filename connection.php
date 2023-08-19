@@ -5,10 +5,9 @@ $dbUsername = "root";
 $dbPassword = "";
 $dbName = "hdms";
 
-$conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
+$conn = new mysqli($dbServername, $dbUsername, $dbPassword, $dbName);
 
-if ($conn) {
-  echo "success";
-} else {
-  die("Error" . mysqli_connect_error());
+if ($conn->connect_errno) {
+  echo "Failed to connect to MySQL: " . $conn->connect_error;
+  die();
 }

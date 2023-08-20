@@ -1,0 +1,32 @@
+body {
+  font-family: Arial;
+}
+
+h1 {
+  text-align: center;
+  color: rgb(26, 115, 232);
+}
+
+.logout {
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+  text-decoration: none;
+  color: rgb(26, 115, 232);
+}
+
+button {
+  width: 130px;
+  height: 60px;
+  border: 0px;
+  background-color: rgb(26, 115, 232);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+nav {
+display: flex;
+border: 1px solid red;
+justify-content: space-between;
+}

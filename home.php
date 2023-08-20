@@ -8,22 +8,24 @@ session_start();
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="home.css" />
   <title>Home</title>
 </head>
 
 <body>
+  <nav>
+    <a href="patients.php"><button>Patients</button></a>
+    <button>Staff</button>
+    <button>Appointments</button>
+    <button>Rooms</button>
+    <button>Availability</button>
+    <button>Emergencies</button>
+  </nav>
 
   <h1>Home</h1>
 
   <?php if (isset($_SESSION["userid"])) : ?>
-    <p>You are loggin in</p>
-    <a href="logout.php">Logout</a>
-
-  <?php else : ?>
-    <a href="index.php"> Log in </a>
-    <a href="signup.php">Sign up</a>
-
+    <a class="logout" href="logout.php">Logout</a>
   <?php endif ?>
 </body>
 

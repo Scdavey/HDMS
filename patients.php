@@ -10,16 +10,40 @@ include_once "connection.php";
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="patients.css" />
+  <script defer src="modals.js"></script>
   <title>Patients</title>
 </head>
 
 <body>
 
   <nav>
-    <button>Add Patient</button>
+    <button data-modal-target='#modal'>Add Patient</button>
     <h1>Patients</h1>
     <button>Dischage Patient</button>
   </nav>
+
+  <div class="modal" id="modal">
+    <h2>Add Patient</h2>
+    <h3>Enter Patient Information</h3>
+    <form action="process-patient.php" method="post">
+      <p>First Name</p>
+      <input name="Firstname" type="text" placeholder="Enter first name here">
+      <p>Last Name</p>
+      <input name="Lastname" type="text" placeholder="Enter last name here">
+      <p>Email Address</p>
+      <input name="Email" type="text" placeholder="Enter email here">
+      <p>Phone Number</p>
+      <input name="Phonenumber" type="text" placeholder="Enter phone number here">
+      <p>Reason for Admition</p>
+      <input name="Reason" type="text" placeholder="Enter reason for admition">
+      <div class="button-container">
+        <button data-close-button class="close-button">Close</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="overlay"></div>
 
   <div class="table-wrapper">
     <table>

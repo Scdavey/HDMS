@@ -19,7 +19,7 @@ include_once "connection.php";
   <nav>
     <button data-modal-target='#modal1'>Add Patient</button>
     <h1>Patients</h1>
-    <button data-modal-target='#modal2'>Dischage Patient</button>
+    <button data-modal-target='#modal2'>Edit Patient</button>
   </nav>
 
   <div class="modal" id="modal1">
@@ -37,30 +37,45 @@ include_once "connection.php";
       <p>Reason for Admition</p>
       <input name="Reason" type="text" placeholder="Enter reason for admition">
       <div class="button-container">
-        <button data-close-button class="close-button">Close</button>
+        <button data-close-button class="close-button" type="button">Close</button>
         <button type="submit">Submit</button>
       </div>
     </form>
   </div>
 
   <div class="modal" id="modal2">
-    <h2>Add Patient</h2>
-    <h3>Enter Patient Information</h3>
+    <h2>Edit Patient</h2>
+    <h3>Modify Patient Information</h3>
     <form action="edit-patient.php" method="post">
-      <p>First Name</p>
-      <input name="Firstname" type="text" placeholder="Enter first name here">
-      <p>Last Name</p>
-      <input name="Lastname" type="text" placeholder="Enter last name here">
-      <p>Email Address</p>
-      <input name="Email" type="text" placeholder="Enter email here">
-      <p>Phone Number</p>
-      <input name="Phonenumber" type="text" placeholder="Enter phone number here">
-      <p>Reason for Admition</p>
-      <input name="Reason" type="text" placeholder="Enter reason for admition">
-      <div class="button-container">
-        <button data-close-button class="close-button">Close</button>
-        <button type="submit">Submit</button>
-      </div>
+      <p>Select Patient</p>
+      <select name="Patients">
+        <?php
+        $sql = "SELECT concat(Firstname , ' ' ,Lastname) AS Name FROM patients;";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+
+        while ($row = $result->fetch_assoc()) {
+          echo
+          '<option   value=\"' . $row['Name'] . '">' . $row['Name'] . '</option>';
+        }
+
+        echo "</select>";
+        ?>
+        <p>First Name</p>
+        <input name="Firstname" type="text" placeholder="Enter first name here">
+        <p>Last Name</p>
+        <input name="Lastname" type="text" placeholder="Enter last name here">
+        <p>Email Address</p>
+        <input name="Email" type="text" placeholder="Enter email here">
+        <p>Phone Number</p>
+        <input name="Phonenumber" type="text" placeholder="Enter phone number here">
+        <p>Reason for Admition</p>
+        <input name="Reason" type="text" placeholder="Enter reason for admition">
+        <div class="button-container">
+          <button data-close-button class="close-button" type="button">Close</button>
+          <button type="submit" name="discharge-button">Discharge</button>
+          <button type="submit" name="submit-button">Submit</button>
+        </div>
     </form>
   </div>
 

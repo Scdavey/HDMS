@@ -52,25 +52,24 @@ include_once "connection.php";
         <?php
         $sql = "SELECT concat(Firstname , ' ' ,Lastname) AS Name FROM patients;";
         $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
 
         while ($row = $result->fetch_assoc()) {
-          echo
-          '<option   value=\"' . $row['Name'] . '">' . $row['Name'] . '</option>';
+          echo '<option   value="' . $row['Name'] . '">' . $row['Name'] . '</option>';
         }
 
         echo "</select>";
         ?>
-        <p>First Name</p>
-        <input name="Firstname" type="text" placeholder="Enter first name here">
-        <p>Last Name</p>
-        <input name="Lastname" type="text" placeholder="Enter last name here">
-        <p>Email Address</p>
-        <input name="Email" type="text" placeholder="Enter email here">
-        <p>Phone Number</p>
-        <input name="Phonenumber" type="text" placeholder="Enter phone number here">
-        <p>Reason for Admition</p>
-        <input name="Reason" type="text" placeholder="Enter reason for admition">
+        <p>Select Attribute</p>
+        <select name="selected-attribute">
+          <option value="Firstname">Firstname</option>
+          <option value="Lastname">Lastname</option>
+          <option value="Email">Email Address</option>
+          <option value="Phonenumber">Phone Number</option>
+          <option value="Admitted">Admition Date</option>
+          <option value="Reason">Admition Reason</option>
+        </select>
+        <p>Enter New Value</p>
+        <input name="new-value" type="text" placeholder="Enter new value here">
         <div class="button-container">
           <button data-close-button class="close-button" type="button">Close</button>
           <button type="submit" name="discharge-button">Discharge</button>
@@ -97,7 +96,6 @@ include_once "connection.php";
         <?php
         $sql = "SELECT * FROM patients";
         $result = $conn->query($sql);
-        $row = $result->fetch_assoc();
 
         while ($row = $result->fetch_assoc()) {
           echo "<tr>

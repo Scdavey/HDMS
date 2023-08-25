@@ -12,6 +12,30 @@
   <div class="sign-up-box">
     <h1>General Hospital</hi>
       <h2>Sign up</h2>
+      <?php
+      if (isset($_GET['signup'])) {
+        $msg = $_GET['signup'];
+
+        if ($msg == "empty") {
+          echo "<p class='error'> Required field empty </P>";
+        } else if ($msg == "email") {
+          echo "<p class='error'> Invalid email</p>";
+        } else if ($msg == "passShort") {
+          echo "<p class='error'> Password must be atleast 8 characters</p>";
+        } else if ($msg == "passLetter") {
+          echo "<p class='error'> Password must contain atleast 1 letter</p>";
+        } else if ($msg == "passNumber") {
+          echo "<p class='error'> Password must be atleast 1 number</p>";
+        } else if ($msg == "passMatch") {
+          echo "<p class='error'> Passwords do not match</p>";
+        } else if ($msg == "emailUsed") {
+          echo "<p class='error'> Email already in use</p>";
+        } else if ($msg == "success") {
+          echo "<p class='success'> Signup successful</p>";
+        }
+      }
+
+      ?>
       <form action="process-signup.php" method="post">
         <div>
           <p>First Name</p>

@@ -16,27 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     empty($password) ||
     empty($rptpassword)
   ) {
-    die("Missing valid information");
-  }
-
-  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    die("Enter valid email");
-  }
-
-  if (strlen($password) < 8) {
-    die("Password too short");
-  }
-
-  if (!preg_match("/[a-z]/i", $password)) {
-    die("Password must contain atleast one letter");
-  }
-
-  if (!preg_match("/[0-9]/", $password)) {
-    die("Password must contain atleast one number");
-  }
-
-  if ($password !== $rptpassword) {
-    die("Passwords do not match");
+    header("Location: signup.php?signup=empty");
+    exit();
+  } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: signup.php?signup=email");
+    exit();
+  } else if (strlen($password) < 8) {
+    header("Location: signup.php?signup=passShort");
+    exit();
+  } else if (!preg_match("/[a-z]/i", $password)) {
+    header("Location: signup.php?signup=passLetter");
+    exit();
+  } else if (!preg_match("/[0-9]/", $password)) {
+    header("Location: signup.php?signup=passNumber");
+    exit();
+  } else if ($password !== $rptpassword) {
+    header("Location: signup.php?signup=passMatch");
+    exit();
   }
 
   $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -47,18 +43,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bind_param("sssss", $lname, $fname, $email, $username, $password_hash);
   try {
     $stmt->execute();
-    echo "Signup successful";
+    header("Location: signup.php?signup=success");
+    exit();
   } catch (mysqli_sql_exception $e) {
     if ($e->getCode() == 1062) {
-      die("Email already in use");
+      header("Location: signup.php?signup=emailUsed");
+      exit();
     } else {
       throw $e;
     }
   }
-  $conn = null;
-  $stmt = null;
-  header("Location: ../HDMS/index.php");
-  exit();
 } else {
   header("Location: ../HDMS/signup.php");
 }

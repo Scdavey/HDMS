@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Sign in</h2>
 
     <?php if ($is_invalid) : ?>
-      <em>Invalid Login</em>
+      <p class="error">Invalid Login</p>
     <?php endif; ?>
     <form method="post">
       <p>Username</p>

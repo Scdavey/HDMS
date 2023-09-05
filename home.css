@@ -5,6 +5,8 @@ body {
 h1 {
   text-align: center;
   color: rgb(26, 115, 232);
+  font-size: 72px;
+  text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logout {
@@ -16,17 +18,47 @@ h1 {
 }
 
 button {
-  width: 130px;
-  height: 60px;
-  border: 0px;
+  width: 320px;
+  height: 78px;
+  border: none;
+  border-radius: 39px;
   background-color: rgb(26, 115, 232);
   color: white;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 20px;
+  box-shadow: 5px 7px 20px rgba(0, 0, 0, 0.3);
 }
 
-nav {
-display: flex;
-border: 1px solid red;
-justify-content: space-between;
+button:hover {
+  transition: 0.15s;
+  opacity: 0.9;
+}
+
+button:active {
+  opacity: 0.7;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  width: 770px;
+  height: 480px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid lightgray;
+  padding: 40px 30px;
+  border-radius: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
 }

@@ -82,10 +82,10 @@ h1 {
 }
 
 button {
-  width: 120px;
-  height: 30px;
-  border: 0px;
-  border-radius: 2px;
+  width: 130px;
+  height: 46px;
+  border: none;
+  border-radius: 23px;
   background-color: rgb(26, 115, 232);
   color: white;
   font-weight: 600;

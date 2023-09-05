@@ -25,6 +25,24 @@ include_once "connection.php";
   <div class="modal" id="modal1">
     <h2>Add Patient</h2>
     <h3>Enter Patient Information</h3>
+    <?php
+
+    if (isset($_GET['process-patient-msg'])) {
+      $msg = $_GET['process-patient-msg'];
+
+      if ($msg == "success") {
+        echo "<p class='success'> success </P>";
+      } else if ($msg == "missing") {
+        echo "<p class='error'> Missing information </P>";
+      } else if ($msg == "invalid") {
+        echo "<p class='error'> Email invalid </P>";
+      } else if ($msg == "used") {
+        echo "<p class='error'> Email already in use </P>";
+      } else if ($msg == "phone") {
+        echo "<p class='error'> Phone number invalid </P>";
+      }
+    }
+    ?>
     <form action="process-patient.php" method="post">
       <p>First Name</p>
       <input name="Firstname" type="text" placeholder="Enter first name here">
@@ -36,16 +54,32 @@ include_once "connection.php";
       <input name="Phonenumber" type="text" placeholder="Enter phone number here">
       <p>Reason for Admition</p>
       <input name="Reason" type="text" placeholder="Enter reason for admition">
-      <div class="button-container">
+      <footer class="button-container">
         <button data-close-button class="close-button" type="button">Close</button>
         <button type="submit">Submit</button>
-      </div>
+      </footer>
     </form>
   </div>
 
   <div class="modal" id="modal2">
     <h2>Edit Patient</h2>
     <h3>Modify Patient Information</h3>
+    <?php
+
+    if (isset($_GET['edit-patient-msg'])) {
+      $msg = $_GET['edit-patient-msg'];
+
+      if ($msg == "success") {
+        echo "<p class='success'> success </P>";
+      } else if ($msg == "name") {
+        echo "<p class='error'> New name invalid </P>";
+      } else if ($msg == "email") {
+        echo "<p class='error'> New email invalid </P>";
+      } else if ($msg == "phone") {
+        echo "<p class='error'> New phone number invalid </P>";
+      }
+    }
+    ?>
     <form action="edit-patient.php" method="post">
       <p>Select Patient</p>
       <select name="Patients">
@@ -61,20 +95,19 @@ include_once "connection.php";
         ?>
         <p>Select Attribute</p>
         <select name="selected-attribute">
-          <option value="Firstname">Firstname</option>
-          <option value="Lastname">Lastname</option>
+          <option value="Firstname">First Name</option>
+          <option value="Lastname">Last Name</option>
           <option value="Email">Email Address</option>
           <option value="Phonenumber">Phone Number</option>
-          <option value="Admitted">Admition Date</option>
           <option value="Reason">Admition Reason</option>
         </select>
         <p>Enter New Value</p>
         <input name="new-value" type="text" placeholder="Enter new value here">
-        <div class="button-container">
+        <footer class="button-container">
           <button data-close-button class="close-button" type="button">Close</button>
           <button type="submit" name="discharge-button">Discharge</button>
           <button type="submit" name="submit-button">Submit</button>
-        </div>
+        </footer>
     </form>
   </div>
 

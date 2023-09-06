@@ -4,6 +4,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $fname = $_POST["fname"];
   $lname = $_POST["lname"];
   $email = $_POST["email"];
+  $phonenumber = $_POST["phonenumber"];
   $username = $_POST["username"];
   $password = $_POST["password"];
   $rptpassword = $_POST["rptpassword"];
@@ -12,6 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     empty($fname) ||
     empty($lname) ||
     empty($email) ||
+    empty($phonenumber) ||
     empty($username) ||
     empty($password) ||
     empty($rptpassword)
@@ -33,17 +35,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else if ($password !== $rptpassword) {
     header("Location: signup.php?signup=passMatch");
     exit();
+  } else if (!ctype_alnum($phonenumber)) {
+    Header("Location: patients.php?signup=phone");
+    exit();
+  } else if (strlen($phonenumber) != 10) {
+    Header("Location: patients.php?signup=phone");
+    exit();
+  } else {
+    $phonenumber =
+      substr($phonenumber, -10, -7) . "-" .
+      substr($phonenumber, -7, -4) . "-" .
+      substr($phonenumber, -4);
   }
 
   $password_hash = password_hash($password, PASSWORD_DEFAULT);
   require_once "connection.php";
-  $query = "INSERT INTO users (Lastname, Firstname, Email, Username, Password)
-              VALUES (?, ?, ?, ?, ?);";
+  $query = "INSERT INTO users (Lastname, Firstname, Email, Phonenumber, Username, Password)
+              VALUES (?, ?, ?, ?, ?, ?);";
   $stmt = $conn->prepare($query);
-  $stmt->bind_param("sssss", $lname, $fname, $email, $username, $password_hash);
+  $stmt->bind_param("ssssss", $lname, $fname, $email, $phonenumber, $username, $password_hash);
   try {
     $stmt->execute();
-    header("Location: signup.php?signup=success");
     exit();
   } catch (mysqli_sql_exception $e) {
     if ($e->getCode() == 1062) {
@@ -54,5 +66,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 } else {
-  header("Location: ../HDMS/signup.php");
+  header("Location: signup.php?signup=success");
 }

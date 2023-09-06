@@ -30,6 +30,8 @@
           echo "<p class='error'> Passwords do not match</p>";
         } else if ($msg == "emailUsed") {
           echo "<p class='error'> Email already in use</p>";
+        } else if ($msg == "emailUsed") {
+          echo "<p class='error'> Invalid phone number</p>";
         } else if ($msg == "success") {
           echo "<p class='success'> Signup successful</p>";
         }
@@ -48,6 +50,10 @@
         <div>
           <p>Email</p>
           <input type="text" name="email" placeholder="Enter email here">
+        </div>
+        <div>
+          <p>Phone Number</p>
+          <input type="text" name="phonenumber" placeholder="Enter phone number here">
         </div>
         <div>
           <p>Username</p>

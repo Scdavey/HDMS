@@ -45,7 +45,7 @@ h1 {
 
 .sign-up-box {
   width: 450px;
-  height: 860px;
+  height: 960px;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -106,13 +106,13 @@ button:active {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 .signup-container {
+  bottom: 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: 20px;
 }
 

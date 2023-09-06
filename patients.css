@@ -206,6 +206,11 @@ td,
 th {
   padding: 12px 15px;
   overflow: hidden;
+  font-size: 18px;
+}
+
+th {
+  font-size: 24px;
 }
 
 tbody tr {

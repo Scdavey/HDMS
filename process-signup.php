@@ -36,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Location: signup.php?signup=passMatch");
     exit();
   } else if (!ctype_alnum($phonenumber)) {
-    Header("Location: patients.php?signup=phone");
+    Header("Location: signup.php?signup=phone");
     exit();
   } else if (strlen($phonenumber) != 10) {
-    Header("Location: patients.php?signup=phone");
+    Header("Location: signup.php?signup=phone");
     exit();
   } else {
     $phonenumber =
@@ -56,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->bind_param("ssssss", $lname, $fname, $email, $phonenumber, $username, $password_hash);
   try {
     $stmt->execute();
+    header("Location: signup.php?signup=success");
     exit();
   } catch (mysqli_sql_exception $e) {
     if ($e->getCode() == 1062) {
@@ -65,6 +66,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       throw $e;
     }
   }
-} else {
-  header("Location: signup.php?signup=success");
 }

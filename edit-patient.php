@@ -23,17 +23,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $selection = $_POST["selected-attribute"];
       $value = $_POST["new-value"];
 
-      if ($selection === ("Firstname" || "Lastname")) {
+      if ($selection == ("Firstname")) {
         if (!ctype_alpha($value)) {
           Header("Location: patients.php?edit-patient-msg=name");
           exit();
         }
-      } else if ($selection === ("Email")) {
+      } else if ($selection == ("Lastname")) {
+        if (!ctype_alpha($value)) {
+          Header("Location: patients.php?edit-patient-msg=name");
+          exit();
+        }
+      } else if ($selection == ("Email")) {
         if (!filter_var($value, FILTER_VALIDATE_EMAIL)) {
           Header("Location: patients.php?edit-patient-msg=email");
           exit();
         }
-      } else if ($selection === ("Phonenumber")) {
+      } else if ($selection == ("Phonenumber")) {
         if (!ctype_alnum($value)) {
           Header("Location: patients.php?edit-patient-msg=phone");
           exit();

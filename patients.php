@@ -69,9 +69,7 @@ include_once "connection.php";
     if (isset($_GET['edit-patient-msg'])) {
       $msg = $_GET['edit-patient-msg'];
 
-      if ($msg == "success") {
-        echo "<p class='success'> success </P>";
-      } else if ($msg == "name") {
+      if ($msg == "name") {
         echo "<p class='error'> New name invalid </P>";
       } else if ($msg == "email") {
         echo "<p class='error'> New email invalid </P>";

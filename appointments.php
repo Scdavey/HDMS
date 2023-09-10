@@ -40,7 +40,7 @@ include_once "connection.php";
       }
     }
     ?>
-    <form action="proccess-appointment.php" method="post">
+    <form action="process-appointment.php" method="post">
       <p>Select Patient</p>
       <select name="Pname">
         <?php

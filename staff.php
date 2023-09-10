@@ -11,10 +11,27 @@ include_once "connection.php";
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="staff.css" />
   <script defer src="modals.js"></script>
+  <script defer src="nav.js"></script>
   <title>Staff</title>
 </head>
 
 <body>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a class="nav" href="patients.php">Patients</a>
+    <a class="nav" href="appointments.php">Appointments</a>
+    <a class="nav" href="staff.php">Staff</a>
+    <?php if (isset($_SESSION["userid"])) : ?>
+      <a class="nav" href="logout.php">Logout</a>
+    <?php endif ?>
+  </div>
+
+  <div class="hamburger" onclick="openNav()">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
+
   <div>
     <h1>Staff Members</h1>
   </div>
@@ -102,11 +119,6 @@ include_once "connection.php";
   <div class="button-container">
     <button class="edit-button" data-modal-target='#modal'>Edit Staff</button>
   </div>
-
-  <a class="home" href="home.php">Home</a>
-  <?php if (isset($_SESSION["userid"])) : ?>
-    <a class="logout" href="logout.php">Logout</a>
-  <?php endif ?>
 </body>
 
 </html>

@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
   } catch (mysqli_sql_exception $e) {
     if ($e->getCode() == 1062) {
-      header("Location: signup.php?signup=emailUsed");
+      header("Location: signup.php?signup=unique");
       exit();
     } else {
       throw $e;

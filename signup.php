@@ -28,9 +28,9 @@
           echo "<p class='error'> Password must be atleast 1 number</p>";
         } else if ($msg == "passMatch") {
           echo "<p class='error'> Passwords do not match</p>";
-        } else if ($msg == "emailUsed") {
-          echo "<p class='error'> Email already in use</p>";
-        } else if ($msg == "emailUsed") {
+        } else if ($msg == "unique") {
+          echo "<p class='error'> Email or username already used</p>";
+        } else if ($msg == "phone") {
           echo "<p class='error'> Invalid phone number</p>";
         } else if ($msg == "success") {
           echo "<p class='success'> Signup successful</p>";

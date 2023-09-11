@@ -1,6 +1,16 @@
 <?php
+session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   require_once "connection.php";
+
+  $userID = $_SESSION["userid"];
+  $sql = "SELECT COUNT(*) AS total FROM users WHERE UserID = '$userID' AND Role = 'Administrator';";
+  $result = $conn->query($sql);
+  $hasMatch = $result->fetch_assoc()['total'];
+  if ($hasMatch == 0) {
+    Header("Location: staff.php?edit-staff-msg=permission");
+    exit();
+  }
 
   if ($_POST["Staff"] == null) {
     echo "No staff selected";
@@ -57,6 +67,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       $stmt = $conn->prepare($sql);
       $stmt->execute();
+
+      //die("Selection = " . $selection . " Value = " . $value . " Fname = " . $fname . " Lname = " . $lname);
 
       Header("Location: staff.php?edit-staff-msg=success");
 

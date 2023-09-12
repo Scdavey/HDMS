@@ -46,9 +46,7 @@ include_once "connection.php";
     if (isset($_GET['process-patient-msg'])) {
       $msg = $_GET['process-patient-msg'];
 
-      if ($msg == "success") {
-        echo "<p class='success'> success </P>";
-      } else if ($msg == "missing") {
+      if ($msg == "missing") {
         echo "<p class='error'> Missing information </P>";
       } else if ($msg == "invalid") {
         echo "<p class='error'> Email invalid </P>";
@@ -56,6 +54,8 @@ include_once "connection.php";
         echo "<p class='error'> Email already in use </P>";
       } else if ($msg == "phone") {
         echo "<p class='error'> Phone number invalid </P>";
+      } else if ($msg == "permission") {
+        echo "<p class='error'> Invalid permissions </p>";
       }
     }
     ?>
@@ -91,6 +91,8 @@ include_once "connection.php";
         echo "<p class='error'> New email invalid </P>";
       } else if ($msg == "phone") {
         echo "<p class='error'> New phone number invalid </P>";
+      } else if ($msg == "permission") {
+        echo "<p class='error'> Invalid permissions </p>";
       }
     }
     ?>

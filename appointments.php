@@ -46,14 +46,14 @@ include_once "connection.php";
     if (isset($_GET['process-appointment-msg'])) {
       $msg = $_GET['process-appointment-msg'];
 
-      if ($msg == "success") {
-        echo "<p class='success'> success </P>";
-      } else if ($msg == "missing") {
+      if ($msg == "missing") {
         echo "<p class='error'> Missing information </P>";
       } else if ($msg == "date") {
         echo "<p class='error'> Date invalid </P>";
       } else if ($msg == "appointment") {
         echo "<p class='error'> Appointment conflict </p>";
+      } else if ($msg == "permission") {
+        echo "<p class='error'> Invalid permissions </p>";
       }
     }
     ?>
@@ -113,10 +113,10 @@ include_once "connection.php";
     if (isset($_GET['delete-appointment-msg'])) {
       $msg = $_GET['delete-appointment-msg'];
 
-      if ($msg == "success") {
-        echo "<p class='success'> success </P>";
-      } else if ($msg == "none") {
+      if ($msg == "none") {
         echo "<p class='error'> No appointment </P>";
+      } else if ($msg == "permission") {
+        echo "<p class='error'> Invalid permissions </p>";
       }
     }
     ?>

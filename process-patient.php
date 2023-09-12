@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
   }
 
-  if (!ctype_alnum($phonenumber)) {
+  if (!is_numeric($phonenumber)) {
     Header("Location: patients.php?process-patient-msg=phone");
     exit();
   } else if (strlen($phonenumber) != 10) {

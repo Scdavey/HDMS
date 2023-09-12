@@ -93,6 +93,8 @@ include_once "connection.php";
         echo "<p class='error'> New phone number invalid </P>";
       } else if ($msg == "permission") {
         echo "<p class='error'> Invalid permissions </p>";
+      } else if ($msg == "used") {
+        echo "<p class='error'> Email already in use </P>";
       }
     }
     ?>

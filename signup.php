@@ -18,8 +18,12 @@
 
         if ($msg == "empty") {
           echo "<p class='error'> Required field empty </P>";
+        } else if ($msg == "name") {
+          echo "<p class='error'> Invalid name </P>";
         } else if ($msg == "email") {
-          echo "<p class='error'> Invalid email</p>";
+          echo "<p class='error'> Invalid email </p>";
+        } else if ($msg == "username") {
+          echo "<p class='error'> Username already in use </p>";
         } else if ($msg == "passShort") {
           echo "<p class='error'> Password must be atleast 8 characters</p>";
         } else if ($msg == "passLetter") {

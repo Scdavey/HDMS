@@ -1,6 +1,6 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
+  require_once "connection.php";
   $fname = $_POST["fname"];
   $lname = $_POST["lname"];
   $email = $_POST["email"];
@@ -9,7 +9,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $password = $_POST["password"];
   $rptpassword = $_POST["rptpassword"];
 
-  if (
+  $sql = "SELECT COUNT(*) AS used FROM users WHERE Username = '$username';";
+  $result = $conn->query($sql);
+  $used = $result->fetch_assoc()['used'];
+  if ($used != 0) {
+    Header("Location: signup.php?signup=username");
+    exit();
+  } else if (
     empty($fname) ||
     empty($lname) ||
     empty($email) ||
@@ -19,6 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     empty($rptpassword)
   ) {
     header("Location: signup.php?signup=empty");
+    exit();
+  } else if (!ctype_alpha($fname)) {
+    header("Location: signup.php?signup=name");
+    exit();
+  } else if (!ctype_alpha($lname)) {
+    header("Location: signup.php?signup=name");
     exit();
   } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     header("Location: signup.php?signup=email");
@@ -35,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   } else if ($password !== $rptpassword) {
     header("Location: signup.php?signup=passMatch");
     exit();
-  } else if (!ctype_alnum($phonenumber)) {
+  } else if (!is_numeric($phonenumber)) {
     Header("Location: signup.php?signup=phone");
     exit();
   } else if (strlen($phonenumber) != 10) {
@@ -49,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   $password_hash = password_hash($password, PASSWORD_DEFAULT);
-  require_once "connection.php";
   $query = "INSERT INTO users (Lastname, Firstname, Email, Phonenumber, Username, Password)
               VALUES (?, ?, ?, ?, ?, ?);";
   $stmt = $conn->prepare($query);

@@ -52,6 +52,8 @@ include_once "connection.php";
         echo "<p class='error'> New phone number invalid </P>";
       } else if ($msg == "permission") {
         echo "<p class='error'> Must be administrator </P>";
+      } else if ($msg == "used") {
+        echo "<p class='error'> Email already used </p>";
       }
     }
     ?>

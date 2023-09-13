@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           exit();
         }
       } else if ($selection == ("Phonenumber")) {
-        if (!ctype_alnum($value)) {
+        if (!is_numeric($value)) {
           Header("Location: staff.php?edit-staff-msg=phone");
           exit();
         } else if (strlen($value) != 10) {
@@ -66,9 +66,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $sql = "UPDATE users SET $selection = '$value' WHERE Firstname = '$fname' && Lastname = '$lname';";
 
       $stmt = $conn->prepare($sql);
-      $stmt->execute();
 
-      //die("Selection = " . $selection . " Value = " . $value . " Fname = " . $fname . " Lname = " . $lname);
+      try {
+        $stmt->execute();
+      } catch (mysqli_sql_exception $e) {
+        if ($e->getCode() == 1062) {
+          Header("Location: staff.php?edit-staff-msg=used");
+          exit();
+        } else {
+          throw $e;
+        }
+      }
 
       Header("Location: staff.php?edit-staff-msg=success");
 
